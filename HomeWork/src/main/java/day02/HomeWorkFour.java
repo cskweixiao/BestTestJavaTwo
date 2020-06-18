@@ -53,8 +53,9 @@ public class HomeWorkFour {
     public StringBuilder read(String path){
         File file =new File(path);
         StringBuilder sb=new StringBuilder();
+        InputStream inputStream=null;
         try {
-            InputStream inputStream=new FileInputStream(file);
+             inputStream=new FileInputStream(file);
             int len;
             byte[] bytes=new byte[256];
 
@@ -67,21 +68,54 @@ public class HomeWorkFour {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        }finally {
+            if (inputStream !=null){
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
         return sb;
     }
 
     public void write(String path,byte[] result){
         File file =new File(path);
+        OutputStream outputStream=null;
         try {
-            OutputStream outputStream =new FileOutputStream(file);
+             outputStream =new FileOutputStream(file);
             outputStream.write(result);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        }finally {
+            if(null !=outputStream){
+                try {
+                    outputStream.flush();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
+    }
 
+   //FileWrite
+    public void FileWrite(){
+        File file =new File("");
+        FileWriter fileWriter=null;
+        byte[] result =new byte[256];
+        try {
+            fileWriter=new FileWriter(file);
+            fileWriter.write(result.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            if(fileWriter !=null){
+
+            }
+        }
 
     }
 
